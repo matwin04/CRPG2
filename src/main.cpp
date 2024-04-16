@@ -1,34 +1,22 @@
 #include "raylib.h"
+#include <iostream>
+using namespace std;
+int main() {
+  const int screenWidth = 800;
+  const int screenHeight = 450;
 
-constexpr auto SCREEN_WIDTH  = 800;
-constexpr auto SCREEN_HEIGHT = 450;
+  InitWindow(screenWidth, screenHeight, "TapeMaser");
 
-int main()
-{
-    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Window title");
-    SetTargetFPS(60);
+  SetTargetFPS(60);
+  while (!WindowShouldClose()) {
+    BeginDrawing();
 
-    Texture2D texture = LoadTexture(ASSETS_PATH"test.png");
-
-    while (!WindowShouldClose())
-    {
-        BeginDrawing();
-
-        ClearBackground(RAYWHITE);
-
-        const int texture_x = SCREEN_WIDTH / 2 - texture.width / 2;
-        const int texture_y = SCREEN_HEIGHT / 2 - texture.height / 2;
-        DrawTexture(texture, texture_x, texture_y, WHITE);
-
-        const char* text = "OMG! IT WORKS!";
-        const Vector2 text_size = MeasureTextEx(GetFontDefault(), text, 20, 1);
-        DrawText(text, SCREEN_WIDTH / 2 - text_size.x / 2, texture_y + texture.height + text_size.y + 10, 20, BLACK);
-
-        EndDrawing();
-    }
-
-    UnloadTexture(texture);
-
-    CloseWindow();
-    return 0;
+    ClearBackground(RAYWHITE);
+    DrawText("TapeMaster", 190, 200, 20, LIGHTGRAY);
+    DrawText("Tape collection database", 190, 250, 20, BLACK);
+    DrawText("By Frostie Studios", 190,300,15, BLACK);
+    EndDrawing();
+  }
+  CloseWindow();
+  return 0;
 }
